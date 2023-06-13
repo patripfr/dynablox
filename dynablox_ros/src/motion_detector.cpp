@@ -210,6 +210,10 @@ bool MotionDetector::lookupTransform(const std::string& target_frame,
 
   // Note(schmluk): We could also wait for transforms here but this is easier
   // and faster atm.
+
+  tf_listener_.waitForTransform(target_frame, source_frame, timestamp_ros, 
+                               ros::Duration(0.2));
+
   try {
     tf_listener_.lookupTransform(target_frame, source_frame, timestamp_ros,
                                  result);
